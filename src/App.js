@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-const BotToken =
-  "MTEyNTc3Mjc3OTcyNDIzMDY4Ng.Gqa34d.M9e1JsFEWIx-_RuxXFZ7h5XMNknmV5MI1w6ssk";
-const ChannelId = "1125770702054764595";
-const RoleId = "1083917236059783178";
-const SiteUrl =
-  "https://api.currencyapi.com/v3/latest?apikey=6GM41w4bflCny4KWrNplJps4QHBzxw2xDSzwlvpE";
+const BotToken = process.env.REACT_APP_BOT_TOKEN;
+const ChannelId = process.env.REACT_APP_CHANNEL_ID;
+const RoleId = process.env.REACT_APP_ROLE_ID;
+const SiteUrl = process.env.REACT_APP_SITE_URL;
+console.log(SiteUrl);
 
 const fetchDailyUpdates = async () => {
   try {
@@ -14,7 +13,7 @@ const fetchDailyUpdates = async () => {
     if (response.ok) {
       const dailyUpdate = await response.json();
       const { code, value } = dailyUpdate.data.SRD;
-      // Process the response and extract the relevant data
+      console.log(value);
 
       // Send the update to the Discord channel and mention the role
       const webhookUrl = `https://discord.com/api/webhooks/${BotToken}`;
